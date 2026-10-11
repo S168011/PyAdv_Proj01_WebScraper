@@ -11,3 +11,6 @@ wheels/
 
 #IDE settings
 .vscode/
+
+#NPM packages
+node_modules/
