@@ -1,0 +1,309 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Explorer Club</title>
+</head>
+<body>
+
+    <!-- Site Header -->
+    <header id="site-header">
+        <h1>Mountain Explorer Club</h1>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="trips.html">Trips</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Featured Trip -->
+        <section id="featured-trip">
+            <h2>Featured Trip</h2>
+
+            <article class="trip-card featured" data-trip-id="TRIP-001">
+                <h3>Alpine Adventure</h3>
+
+                <img src="image1.jpg" alt="Alpine Adventure">
+
+                <p class="description">
+                    Join us for a three-day hike through the Alps.
+                </p>
+
+                <span class="difficulty">Hard</span>
+                <span class="duration">3 Days</span>
+
+                <a href="trip-details.html">Read More</a>
+            </article>
+        </section>
+
+        <!-- Upcoming Trips -->
+        <section id="upcoming-trips">
+            <h2>Upcoming Trips</h2>
+
+            <article class="trip-card" data-trip-id="TRIP-002">
+                <h3>Forest Escape</h3>
+
+                <img src="images/forest.jpg" alt="Forest Escape">
+
+                <p>Perfect for beginners.</p>
+
+                <span class="difficulty">Easy</span>
+            </article>
+
+            <article class="trip-card" data-trip-id="TRIP-003">
+                <h3>Rocky Peak Challenge</h3>
+
+                <img src="images/rocky-peak.jpg" alt="Rocky Peak">
+
+                <p>Advanced climbing experience.</p>
+
+                <span class="difficulty">Expert</span>
+            </article>
+
+            <article class="trip-card hidden" data-trip-id="TRIP-004">
+                <h3>Secret Canyon Tour</h3>
+
+                <img src="images/canyon.png" alt="Secret Canyon">
+
+                <p>Members-only event.</p>
+            </article>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery">
+            <h2>Trip Gallery</h2>
+
+            <div class="image-grid">
+                <img src="images/gallery-1.jpg" alt="Gallery photo 1">
+                <img src="images/gallery-2.jpg" alt="Gallery photo 2">
+                <img src="images/gallery-3.png" alt="Gallery photo 3">
+
+                <!-- Lazy-loaded images -->
+                <img
+                    class="lazy-image"
+                    src="images/waterfall.jpg"
+                    alt="Waterfall">
+
+                <img
+                    class="lazy-image"
+                    src="images/lake.png"
+                    alt="Lake">
+            </div>
+
+            <figure class="featured-photo">
+                <img src="images/sunrise.jpg" alt="Sunrise from the summit">
+                <figcaption>
+                    Early morning view from the summit.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Image Testing Section -->
+        <section id="image-testing">
+            <h2>Image Testing Area</h2>
+
+            <a href="gallery.html">
+                <img src="images/gallery-cover.jpg" alt="Gallery">
+            </a>
+
+            <a href="sponsors.html">
+                <img src="images/sponsor-logo.png" alt="Sponsors">
+            </a>
+
+            <div
+                class="photo-card"
+                data-thumbnail="images/thumb1.jpg"
+                data-fullsize="images/fullsize1.jpg">
+                Photo Card 1
+                <img src="images/thumb1.jpg" alt="Photo card 1 thumbnail">
+                <img src="images/fullsize1.jpg" alt="Photo card 1 full size">
+            </div>
+
+            <div
+                class="photo-card"
+                data-thumbnail="images/thumb2.png"
+                data-fullsize="images/fullsize2.png">
+                Photo Card 2
+                <img src="images/thumb2.png" alt="Photo card 2 thumbnail">
+                <img src="images/fullsize2.png" alt="Photo card 2 full size">
+            </div>
+
+            <div class="banner">
+                <img src="images/banner.jpg" alt="Banner">
+                Banner
+            </div>
+
+            <div class="hero">
+                <img src="images/hero.png" alt="Hero section">
+                Hero Section
+            </div>
+
+            <p>Featured downloads:</p>
+            <ul>
+                <li><img src="summit.jpg" alt="Summit"></li>
+                <li><img src="hiking-map.jpg" alt="Hiking map"></li>
+                <li><img src="campfire.png" alt="Campfire"></li>
+                <li><img src="emergency-kit.png" alt="Emergency kit"></li>
+                <li><img src="basecamp.jpg" alt="Basecamp"></li>
+            </ul>
+        </section>
+
+        <!-- Members -->
+        <section id="members">
+            <h2>Club Members</h2>
+
+            <ul class="member-list">
+                <li data-member-id="101">
+                    <span class="name">Alice Johnson</span>
+                    <span class="role">President</span>
+                </li>
+
+                <li data-member-id="102">
+                    <span class="name">Bob Smith</span>
+                    <span class="role">Guide</span>
+                </li>
+
+                <li data-member-id="103">
+                    <span class="name">Charlie Brown</span>
+                    <span class="role">Member</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Statistics -->
+        <section id="trip-stats">
+            <h2>2025 Statistics</h2>
+
+            <table id="stats-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Trips</th>
+                        <th>Participants</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>January</td>
+                        <td>4</td>
+                        <td>52</td>
+                    </tr>
+
+                    <tr>
+                        <td>February</td>
+                        <td>3</td>
+                        <td>40</td>
+                    </tr>
+
+                    <tr>
+                        <td>March</td>
+                        <td>5</td>
+                        <td>73</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Gear Checklist -->
+        <section id="gear-checklist">
+            <h2>Recommended Gear</h2>
+
+            <ol>
+                <li>Backpack</li>
+                <li>Water Bottle</li>
+                <li>Hiking Boots</li>
+                <li>Compass</li>
+                <li>First Aid Kit</li>
+            </ol>
+        </section>
+
+        <!-- Newsletter Form -->
+        <section id="newsletter">
+            <h2>Newsletter Signup</h2>
+
+            <form action="/subscribe" method="post">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name">
+
+                <br><br>
+
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email">
+
+                <br><br>
+
+                <label for="experience">Experience</label>
+                <select id="experience" name="experience">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="expert">Expert</option>
+                </select>
+
+                <br><br>
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms">
+
+                <label for="terms">
+                    I agree to receive emails
+                </label>
+
+                <br><br>
+
+                <button type="submit">
+                    Subscribe
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside>
+        <h2>Useful Resources</h2>
+
+        <ul>
+            <li><a href="maps.html">Trail Maps</a></li>
+            <li><a href="weather.html">Weather Forecast</a></li>
+        </ul>
+
+        <div class="sponsors">
+            <h3>Sponsors</h3>
+
+            <a href="sponsor.html">
+                <img src="images/sidebar-logo.png" alt="Sponsor">
+            </a>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mountain Explorer Club</p>
+
+        <div class="social-links">
+            <a href="twitter.html">Twitter</a>
+            <a href="instagram.html">Instagram</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
