@@ -36,9 +36,7 @@ def extract_parsed_links(src: bytes) -> tuple[list[parse.ParseResult[str]], list
 
     return parsed_links, raw_links
 
-def recursive_lookup(url: str, depth: int, visited: set) -> None:
-    max_depth = 1
-
+def recursive_lookup(url: str, depth: int, visited: set, max_depth: int) -> None:
     if depth > max_depth:
         return
 
@@ -68,14 +66,21 @@ def recursive_lookup(url: str, depth: int, visited: set) -> None:
 
     for link in raw_hyperlinks:
         if link.startswith("http"):
-            recursive_lookup(link, depth + 1, visited)
+            recursive_lookup(link, depth + 1, visited, max_depth)
 
 @click.command
 @click.option("--url", 'url', type=str)
-def main(url) -> None:
-    visited_links: set = set()
-    recursive_lookup(url, 0, visited_links)
+@click.option("--max-depth", 'max_depth', type=int)
+@click.option("--mode", 'mode', type=str)
+def main(url, max_depth, mode) -> None:
+    if mode not in ["sync", "async"]:
+        raise ValueError(f"Unkown mode: '{mode}'")
 
+    if mode == "async":
+        raise NotImplementedError("Code hasn't been written yet")
+
+    visited_links: set = set()
+    recursive_lookup(url, 0, visited_links, max_depth)
 if __name__ == "__main__":
     main()
 

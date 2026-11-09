@@ -1,1 +1,2 @@
 Test page: [plain HTML & CSS website](https://turingschool-examples.github.io/introductory-static-site/)
+Create .zip folder: `Compress-Archive -Path (Get-ChildItem -Force | Where-Object Name -ne '.venv').FullName -DestinationPath .\project.zip`
