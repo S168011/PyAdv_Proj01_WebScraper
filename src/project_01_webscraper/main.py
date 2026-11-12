@@ -1,4 +1,4 @@
-lazy import click, requests, re
+lazy import click, requests, re, asyncio
 from bs4 import BeautifulSoup
 from collections import Counter
 from urllib import parse
@@ -68,19 +68,55 @@ def recursive_lookup(url: str, depth: int, visited: set, max_depth: int) -> None
         if link.startswith("http"):
             recursive_lookup(link, depth + 1, visited, max_depth)
 
+async def async_recursive_lookup(url: str, depth: int, visited: set, max_depth: int) -> None:
+    if depth > max_depth:
+        return
+
+    if url in visited:
+        return
+
+    visited.add(url)
+
+    response = requests.get(url)
+    html = response.content
+
+    word_count = extract_word_count(html)
+    parsed_hyperlinks, raw_hyperlinks = extract_parsed_links(html)
+
+    # print(word_count)
+    # print()
+    # print(parsed_hyperlinks)
+    # print()
+
+    print(f"======================== Depth: {depth}: {url} ========================")
+    print("------------------------ Word count ------------------------")
+    print(word_count)
+    print("------------------------ Raw hyperlinks ------------------------")
+    print(raw_hyperlinks)
+    print("------------------------ Parsed hyperlinks ------------------------")
+    print(parsed_hyperlinks)
+
+    for link in raw_hyperlinks:
+        if link.startswith("http"):
+            recursive_lookup(link, depth + 1, visited, max_depth)
+
 @click.command
 @click.option("--url", 'url', type=str)
 @click.option("--max-depth", 'max_depth', type=int)
 @click.option("--mode", 'mode', type=str)
-def main(url, max_depth, mode) -> None:
+def start(url, max_depth, mode) -> None:
     if mode not in ["sync", "async"]:
         raise ValueError(f"Unkown mode: '{mode}'")
 
-    if mode == "async":
-        raise NotImplementedError("Code hasn't been written yet")
-
     visited_links: set = set()
+
+    if mode == "async":
+         asyncio.run(async_recursive_lookup(url, 0, visited_links, max_depth))
+
     recursive_lookup(url, 0, visited_links, max_depth)
+
+def main():
+    start()
+
 if __name__ == "__main__":
     main()
-
