@@ -98,7 +98,7 @@ async def async_recursive_lookup(url: str, depth: int, visited: set, max_depth: 
 
     for link in raw_hyperlinks:
         if link.startswith("http"):
-            recursive_lookup(link, depth + 1, visited, max_depth)
+            await async_recursive_lookup(link, depth + 1, visited, max_depth)
 
 @click.command
 @click.option("--url", 'url', type=str)
@@ -112,8 +112,8 @@ def start(url, max_depth, mode) -> None:
 
     if mode == "async":
          asyncio.run(async_recursive_lookup(url, 0, visited_links, max_depth))
-
-    recursive_lookup(url, 0, visited_links, max_depth)
+    else:
+        recursive_lookup(url, 0, visited_links, max_depth)
 
 def main():
     start()
