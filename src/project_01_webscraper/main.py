@@ -1,4 +1,5 @@
 lazy import click, requests, re, asyncio
+lazy import aiohttp
 from bs4 import BeautifulSoup
 from collections import Counter
 from urllib import parse
@@ -77,8 +78,9 @@ async def async_recursive_lookup(url: str, depth: int, visited: set, max_depth: 
 
     visited.add(url)
 
-    response = requests.get(url)
-    html = response.content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            html = await response.read()
 
     word_count = extract_word_count(html)
     parsed_hyperlinks, raw_hyperlinks = extract_parsed_links(html)
@@ -96,9 +98,16 @@ async def async_recursive_lookup(url: str, depth: int, visited: set, max_depth: 
     print("------------------------ Parsed hyperlinks ------------------------")
     print(parsed_hyperlinks)
 
+    useable_links = []
+
     for link in raw_hyperlinks:
         if link.startswith("http"):
-            await async_recursive_lookup(link, depth + 1, visited, max_depth)
+            useable_links.append(link)
+
+    await asyncio.gather(
+        *(async_recursive_lookup(link, depth + 1, visited, max_depth) for link in useable_links)
+    )
+
 
 @click.command
 @click.option("--url", 'url', type=str)
